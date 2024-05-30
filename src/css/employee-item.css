@@ -1,0 +1,19 @@
+.employee-item{
+    background-color: rgb(233, 233, 233);
+    padding: 16px;
+    margin: 16px;
+    border: 2px solid black;
+}
+
+.employee-item h3{
+    margin: 4px 0;
+    font-size: 24px;
+}
+
+.employee-item-info{
+    display: flex;
+}
+
+.employee-item-info-left{
+    margin-right: 32px;
+}

@@ -57,7 +57,6 @@ function Header({ setCurrentUser, setTab, setIsAdmin, setIsBibliographer, setIsL
                     )}
                     {title === 'Bibliographer' && (
                         <div></div>
-
                     )}
                 </>
                 <button onClick={handleAddEmployeeClick}>Add Employee</button>

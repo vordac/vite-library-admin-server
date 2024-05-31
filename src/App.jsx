@@ -21,12 +21,14 @@ function App() {
   useEffect(() => {
     const storedToken = localStorage.getItem('jwtToken');
     const jobTitle = localStorage.getItem('jobTitle');
+    const address = localStorage.getItem('address');
     if (storedToken && jobTitle) {
       setCurrentUser(storedToken);
       if (jobTitle === 'admin') {
         setIsAdmin(true);
       } else if (jobTitle === 'librarian') {
         setIsLibrarian(true);
+        setAddress(address);
       } else if (jobTitle === 'bibliographer') {
         setIsBibliographer(true);
       }

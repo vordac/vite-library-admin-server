@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody } from 'react-bootstrap';
-import '../../css/employee-item.css';
+import '../../../css/employee-item.css';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,8 +9,6 @@ function formatDate(dateString) {
   const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
   return date.toLocaleDateString('en-GB', options); // en-GB for dd-mm-YYYY format
 }
-
-
 
 function EmployeeItem({ employee }) {
 

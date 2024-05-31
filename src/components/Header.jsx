@@ -24,8 +24,12 @@ function Header({ setCurrentUser, setTab, setIsAdmin, setIsBibliographer, setIsL
         setTab(1);
     };
 
-    const handleBooksClick = () => {
+    const handleAddEmployeeClick = () => {
         setTab(2);
+    }
+
+    const handleFormularsClick = () => {
+        setTab(3);
     }
 
     useEffect(() => {
@@ -44,7 +48,19 @@ function Header({ setCurrentUser, setTab, setIsAdmin, setIsBibliographer, setIsL
                 <h2>LibraUniversal {title}</h2>
             </div>
             <div className='header-control'>
-                <button onClick={handleBooksClick}>Add Employee</button>
+                <>
+                    {title === 'Admin' && (
+                        <div></div>
+                    )}
+                    {title === 'Librarian' && (
+                        <button onClick={handleFormularsClick}>Formulars</button>
+                    )}
+                    {title === 'Bibliographer' && (
+                        <div></div>
+
+                    )}
+                </>
+                <button onClick={handleAddEmployeeClick}>Add Employee</button>
                 <button onClick={handleEmployeesClick}>Employees</button>
                 <button onClick={handleLogoutClick}>Logout</button>
             </div>

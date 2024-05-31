@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Routes, Outlet, useNavigate } from 'rea
 import './App.css'
 
 import Index from './components/Index';
-import DashboardAdmin from './components/dashboards/DashboardAdmin';
-import EmployeeAdd from './components/EmployeeAdd';
+import DashboardAdmin from './components/roles/admin/DashboardAdmin';
+import EmployeeAdd from './components/roles/admin/EmployeeAdd';
 import Header from './components/Header';
-import DashboardBibliographer from './components/dashboards/DashboardBibliographer';
-import DashboardLibrarian from './components/dashboards/DashboardLibrarian';
+import DashboardBibliographer from './components/roles/bibliographer/DashboardBibliographer';
+import DashboardLibrarian from './components/roles/librarian/DashboardLibrarian';
 
 function App() {
   const [tab, setTab] = useState(1);
@@ -15,6 +15,8 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLibrarian, setIsLibrarian] = useState(false);
   const [isBibliographer, setIsBibliographer] = useState(false);
+  const [jobTitle, setJobTitle] = useState('');
+  const [address, setAddress] = useState('');
 
   useEffect(() => {
     const storedToken = localStorage.getItem('jwtToken');
@@ -43,7 +45,7 @@ function App() {
       return (
         <div className='dashboard'>
           <Header setCurrentUser={setCurrentUser} setTab={setTab} isAdmin={isAdmin} isLibrarian={isLibrarian} isBibliographer={isBibliographer} setIsAdmin={setIsAdmin} setIsBibliographer={setIsBibliographer} setIsLibrarian={setIsLibrarian} />
-          <DashboardLibrarian tab={tab} />
+          <DashboardLibrarian tab={tab} currentUser={currentUser} jobTitle={jobTitle} address={address}/>
         </div>
       )
     } else if (currentUser && isBibliographer) {
@@ -56,7 +58,7 @@ function App() {
     } else {
       return (
         <>
-          <Index setCurrentUser={setCurrentUser} setIsAdmin={setIsAdmin} setIsBibliographer={setIsBibliographer} setIsLibrarian={setIsLibrarian} />
+          <Index setCurrentUser={setCurrentUser} setIsAdmin={setIsAdmin} setIsBibliographer={setIsBibliographer} setIsLibrarian={setIsLibrarian} setJobTitle={setJobTitle} setAddress={setAddress} />
         </>
       )
     }
@@ -75,7 +77,7 @@ function App() {
       return (
         <div className='dashboard'>
           <Header setCurrentUser={setCurrentUser} setTab={setTab} isAdmin={isAdmin} isLibrarian={isLibrarian} isBibliographer={isBibliographer} setIsAdmin={setIsAdmin} setIsBibliographer={setIsBibliographer} setIsLibrarian={setIsLibrarian} />
-          <DashboardLibrarian tab={tab} />
+          <DashboardLibrarian tab={tab} jobTitle={jobTitle} address={address}/>
         </div>
       )
     } else if (currentUser && isBibliographer) {

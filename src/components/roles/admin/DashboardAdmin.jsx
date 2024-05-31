@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
-import '../../css/dashboard.css';
+import '../../../css/dashboard.css';
 
-import Employees from '../Employees';
-import EmployeeAdd from '../EmployeeAdd';
+import Employees from './Employees';
+import EmployeeAdd from './EmployeeAdd';
 
 function DashboardAdmin({ tab }) {
     switch (tab) {

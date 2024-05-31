@@ -2,16 +2,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
-import '../css/employee-add.css';
+import '../../../css/employee-add.css';
 
-function EmployeeAdd() {
+function EmployeeAdd({currentUser, jobTitle, address}) {
     const [fullName, setFullName] = useState('');
-    const [address, setAddress] = useState('');
     const [birthDate, setBirthDate] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [hireDate, setHireDate] = useState('');
-    const [jobTitle, setJobTitle] = useState('');
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate();
@@ -19,7 +17,6 @@ function EmployeeAdd() {
     const handleEmployeeAddClick = async (event) => {
         event.preventDefault();
 
-        // Perform form validation here
         const phoneNumberRegex = /^\+38\(\d{3}\)\d{3}-\d{2}-\d{2}$/;
         const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
 
@@ -117,11 +114,11 @@ function EmployeeAdd() {
             const response = await axios.post('http://localhost:5001/add-employee', {
                 full_name: fullName,
                 address: address,
-                birth_date: birthDate, // This should be a datepicker
-                phone_number: phoneNumber, // This should be in the format +38(XXX)XXX-XX-XX or use Swal.fire for validation
-                email: email, // This should be a valid email address
-                hire_date: hireDate, // This should be a datepicker
-                job_title: jobTitle, // This should be a dropdown with options: librarian or bibliographer
+                birth_date: birthDate, 
+                phone_number: phoneNumber, 
+                email: email, 
+                hire_date: hireDate, 
+                job_title: 'bibliographer', 
                 password: password,
             });
 
@@ -148,14 +145,6 @@ function EmployeeAdd() {
                         type="text"
                         value={fullName}
                         onChange={(event) => setFullName(event.target.value)}
-                    />
-                </div>
-                <div className='employee-add-address'>
-                    <label>Address</label>
-                    <input
-                        type="text"
-                        value={address}
-                        onChange={(event) => setAddress(event.target.value)}
                     />
                 </div>
                 <div className='employee-add-birthday'>
@@ -189,17 +178,6 @@ function EmployeeAdd() {
                         value={hireDate}
                         onChange={(event) => setHireDate(event.target.value)}
                     />
-                </div>
-                <div className='employee-add-jobtitle'>
-                    <label>Job Title</label>
-                    <select
-                        value={jobTitle}
-                        onChange={(event) => setJobTitle(event.target.value)}
-                    >
-                        <option value="">Select Job Title</option>
-                        <option value="librarian">Librarian</option>
-                        <option value="bibliographer">Bibliographer</option>
-                    </select>
                 </div>
                 <div className='employee-add-password'>
                     <label>Password</label>

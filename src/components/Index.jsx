@@ -4,13 +4,14 @@ import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
 import '../css/signin.css';
 
-function Index({ setCurrentUser, setIsAdmin, setIsLibrarian, setIsBibliographer }) {
+function Index({ setCurrentUser, setIsAdmin, setIsLibrarian, setIsBibliographer, setJobTitle, setAddress }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedToken = localStorage.getItem('jwtToken');
+
     if (storedToken) {
       setCurrentUser(storedToken);
       navigate('/dashboard');
@@ -33,9 +34,12 @@ function Index({ setCurrentUser, setIsAdmin, setIsLibrarian, setIsBibliographer 
       if (response.status === 200) {
         localStorage.setItem('jwtToken', response.data.jwtToken);
         localStorage.setItem('jobTitle', response.data.job_title);
+        localStorage.setItem('address', response.data.address);
         setIsAdmin(false);
         setIsLibrarian(false);
         setIsBibliographer(false);
+        setJobTitle(response.data.job_title);
+        setAddress(response.data.address);
 
         setCurrentUser(response.data.jwtToken);
         if (response.data.job_title === 'admin') {

@@ -12,6 +12,7 @@
 
 .formular-item-info{
     display: flex;
+    flex-direction: column;
 }
 
 .formular-item-info-left{

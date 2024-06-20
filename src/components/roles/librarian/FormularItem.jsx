@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody } from 'react-bootstrap';
-import '../../../css/employee-item.css';
+import '../../../css/formular-item.css';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,12 +14,11 @@ function FormularItem({ formular }) {
 
   const navigate = useNavigate();
 
-
   const {formulary_number, employee_full_name, book_isbn, loan_date, loan_days, return_date, reader_full_name, address} = formular;
 
   const handleDeleteClick = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5001/employees/${id}`, {
+      const response = await fetch(`http://localhost:5001/formulars/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -29,13 +28,13 @@ function FormularItem({ formular }) {
       if (response.ok) {
 
         Swal.fire({
-          title: "Employee was deleted",
+          title: "Formular was deleted",
           icon: "success"
         });
-
+        
         navigate('/');
       } else {
-        console.log('Failed to delete employee');
+        console.log('Failed to delete formular');
       }
     } catch (err) {
       console.log(err);
@@ -43,17 +42,18 @@ function FormularItem({ formular }) {
   }
 
   return (
-    <Card className='employee-item'>
+    <Card className='formular-item'>
       <CardBody>
-        <div className='employee-item-info'>
-          <p>Number: {formulary_number}</p>
-          <p>Employee Full Name: {employee_full_name}</p>
-          <p>ISBN: {book_isbn}</p>
-          <p>Loan Date: {loan_date}</p>
-          <p>Loan Days: {loan_days}</p>
-          <p>Return Date: {return_date}</p>
-          <p>Reader Full Name: {reader_full_name}</p>
-          <p>Address: {address}</p>
+        <div className='formular-item-info'>
+          <p><b>Number:</b> {formulary_number}</p>
+          <p><b>Employee:</b> {employee_full_name}</p>
+          <p><b>ISBN:</b> {book_isbn}</p>
+          <p><b>Loan Date:</b> {formatDate(loan_date)}</p>
+          <p><b>Loan Days:</b> {loan_days}</p>
+          <p><b>Return Date:</b> {formatDate(return_date)}</p>
+          <p><b>Reader Full Name:</b> {reader_full_name}</p>
+          <p><b>Address:</b> {address}</p>
+          <button onClick={() => handleDeleteClick(formulary_number)}>DELETE</button>
         </div>
       </CardBody>
     </Card>
